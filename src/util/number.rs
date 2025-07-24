@@ -1,8 +1,8 @@
 use std::convert::TryFrom;
 use std::fmt;
 
-use rust_decimal::prelude::ToPrimitive;
 use rust_decimal::Decimal;
+use rust_decimal::prelude::ToPrimitive;
 use serde::Serialize;
 
 #[derive(Debug, Clone, Serialize, Copy, PartialEq, Eq)]

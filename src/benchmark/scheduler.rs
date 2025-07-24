@@ -1,7 +1,7 @@
 use super::benchmark_result::BenchmarkResult;
 use super::executor::{Executor, MockExecutor, RawExecutor, ShellExecutor};
-use super::{relative_speed, Benchmark};
-use colored::*;
+use super::{Benchmark, relative_speed};
+use colored::Colorize;
 use std::cmp::Ordering;
 
 use crate::command::{Command, Commands};
@@ -148,7 +148,7 @@ impl<'a> Scheduler<'a> {
                  Try to re-run the benchmark on a quiet system. If you did not do so already, try the \
                  --shell=none/-N option. If it does not help either, you command is most likely too fast \
                  to be accurately benchmarked by hyperfine.",
-                 "Note".bold().red()
+                "Note".bold().red()
             );
         }
     }

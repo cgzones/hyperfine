@@ -45,7 +45,7 @@ impl CPUTimer {
 
 /// Read CPU execution times ('user' and 'system')
 fn get_cpu_times() -> CPUTimes {
-    use libc::{getrusage, rusage, RUSAGE_CHILDREN};
+    use libc::{RUSAGE_CHILDREN, getrusage, rusage};
 
     let result: rusage = unsafe {
         let mut buf = mem::zeroed();

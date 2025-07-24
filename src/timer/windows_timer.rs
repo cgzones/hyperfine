@@ -6,8 +6,8 @@ use std::{mem, os::windows::io::AsRawHandle, process, ptr};
 use windows_sys::Win32::{
     Foundation::{CloseHandle, HANDLE},
     System::JobObjects::{
-        AssignProcessToJobObject, CreateJobObjectW, JobObjectBasicAccountingInformation,
-        QueryInformationJobObject, JOBOBJECT_BASIC_ACCOUNTING_INFORMATION,
+        AssignProcessToJobObject, CreateJobObjectW, JOBOBJECT_BASIC_ACCOUNTING_INFORMATION,
+        JobObjectBasicAccountingInformation, QueryInformationJobObject,
     },
 };
 
@@ -20,11 +20,11 @@ use windows_sys::Win32::System::Threading::ResumeThread;
 use once_cell::sync::Lazy;
 #[cfg(not(feature = "windows_process_extensions_main_thread_handle"))]
 use windows_sys::{
-    s, w,
     Win32::{
         Foundation::{NTSTATUS, STATUS_SUCCESS},
         System::LibraryLoader::{GetModuleHandleW, GetProcAddress},
     },
+    s, w,
 };
 
 use crate::util::units::Second;

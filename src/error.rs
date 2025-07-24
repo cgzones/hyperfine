@@ -15,9 +15,13 @@ pub enum ParameterScanError {
     TooLarge,
     #[error("Zero is not a valid parameter step")]
     ZeroStep,
-    #[error("A step size is required when the range bounds are floating point numbers. The step size can be specified with the '-D/--parameter-step-size <DELTA>' parameter")]
+    #[error(
+        "A step size is required when the range bounds are floating point numbers. The step size can be specified with the '-D/--parameter-step-size <DELTA>' parameter"
+    )]
     StepRequired,
-    #[error("'--command-name' has been specified {0} times. It has to appear exactly once, or exactly {1} times (number of benchmarks)")]
+    #[error(
+        "'--command-name' has been specified {0} times. It has to appear exactly once, or exactly {1} times (number of benchmarks)"
+    )]
     UnexpectedCommandNameCount(usize, usize),
 }
 
@@ -41,7 +45,9 @@ pub enum OptionsError<'a> {
     EmptyRunsRange,
     #[error("Too many --command-name options: Expected {0} at most")]
     TooManyCommandNames(usize),
-    #[error("'--command-name' has been specified {0} times. It has to appear exactly once, or exactly {1} times (number of benchmarks)")]
+    #[error(
+        "'--command-name' has been specified {0} times. It has to appear exactly once, or exactly {1} times (number of benchmarks)"
+    )]
     UnexpectedCommandNameCount(usize, usize),
     #[error("Could not read numeric integer argument to '--{0}': {1}")]
     IntParsingError(&'a str, ParseIntError),

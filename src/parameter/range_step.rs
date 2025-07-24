@@ -17,16 +17,16 @@ pub trait Numeric:
 {
 }
 impl<
-        T: Add<Output = Self>
-            + Sub<Output = Self>
-            + Div<Output = Self>
-            + AddAssign
-            + PartialOrd
-            + Copy
-            + Clone
-            + From<i32>
-            + Into<Number>,
-    > Numeric for T
+    T: Add<Output = Self>
+        + Sub<Output = Self>
+        + Div<Output = Self>
+        + AddAssign
+        + PartialOrd
+        + Copy
+        + Clone
+        + From<i32>
+        + Into<Number>,
+> Numeric for T
 {
 }
 

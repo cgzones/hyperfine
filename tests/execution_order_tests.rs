@@ -1,6 +1,6 @@
 use std::{fs::File, io::Read, path::PathBuf};
 
-use tempfile::{tempdir, TempDir};
+use tempfile::{TempDir, tempdir};
 
 mod common;
 use common::hyperfine;

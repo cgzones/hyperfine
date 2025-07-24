@@ -7,7 +7,7 @@ mod windows_timer;
 mod unix_timer;
 
 #[cfg(target_os = "linux")]
-use nix::fcntl::{splice, SpliceFFlags};
+use nix::fcntl::{SpliceFFlags, splice};
 use std::convert::TryFrom;
 use std::convert::TryInto;
 #[cfg(target_os = "linux")]

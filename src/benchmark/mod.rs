@@ -11,8 +11,8 @@ use crate::command::Command;
 use crate::options::{
     CmdFailureAction, CommandOutputPolicy, ExecutorKind, Options, OutputStyleOption,
 };
-use crate::outlier_detection::{modified_zscores, OUTLIER_THRESHOLD};
-use crate::output::format::{format_duration, format_duration_unit, BytesFormat};
+use crate::outlier_detection::{OUTLIER_THRESHOLD, modified_zscores};
+use crate::output::format::{BytesFormat, format_duration, format_duration_unit};
 use crate::output::progress_bar::get_progress_bar;
 use crate::output::warnings::{OutlierWarningOptions, Warnings};
 use crate::parameter::ParameterNameAndValue;
@@ -22,8 +22,8 @@ use crate::util::units::Second;
 use benchmark_result::BenchmarkResult;
 use timing_result::TimingResult;
 
-use anyhow::{anyhow, Result};
-use colored::*;
+use anyhow::{Result, anyhow};
+use colored::Colorize;
 use statistical::{mean, median, standard_deviation};
 
 use self::executor::Executor;

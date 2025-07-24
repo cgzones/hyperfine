@@ -2,19 +2,19 @@ use std::collections::BTreeMap;
 use std::fmt;
 use std::str::FromStr;
 
-use crate::parameter::tokenize::tokenize;
 use crate::parameter::ParameterValue;
+use crate::parameter::tokenize::tokenize;
 use crate::{
     error::{OptionsError, ParameterScanError},
     parameter::{
-        range_step::{Numeric, RangeStep},
         ParameterNameAndValue,
+        range_step::{Numeric, RangeStep},
     },
 };
 
-use clap::{parser::ValuesRef, ArgMatches};
+use clap::{ArgMatches, parser::ValuesRef};
 
-use anyhow::{bail, Context, Result};
+use anyhow::{Context, Result, bail};
 use rust_decimal::Decimal;
 
 /// A command that should be benchmarked.
