@@ -16,6 +16,7 @@ use super::timing_result::TimingResult;
 use anyhow::{bail, Context, Result};
 use statistical::mean;
 
+#[derive(Clone, Copy)]
 pub enum BenchmarkIteration {
     NonBenchmarkRun,
     Warmup(u64),
@@ -23,11 +24,12 @@ pub enum BenchmarkIteration {
 }
 
 impl BenchmarkIteration {
+    #[must_use]
     pub fn to_env_var_value(&self) -> Option<String> {
         match self {
             BenchmarkIteration::NonBenchmarkRun => None,
-            BenchmarkIteration::Warmup(i) => Some(format!("warmup-{}", i)),
-            BenchmarkIteration::Benchmark(i) => Some(format!("{}", i)),
+            BenchmarkIteration::Warmup(i) => Some(format!("warmup-{i}")),
+            BenchmarkIteration::Benchmark(i) => Some(format!("{i}")),
         }
     }
 }
@@ -124,6 +126,7 @@ pub struct RawExecutor<'a> {
 }
 
 impl<'a> RawExecutor<'a> {
+    #[must_use]
     pub fn new(options: &'a Options) -> Self {
         RawExecutor { options }
     }
@@ -165,6 +168,7 @@ pub struct ShellExecutor<'a> {
 }
 
 impl<'a> ShellExecutor<'a> {
+    #[must_use]
     pub fn new(shell: &'a Shell, options: &'a Options) -> Self {
         ShellExecutor {
             shell,
@@ -217,14 +221,14 @@ impl Executor for ShellExecutor<'_> {
     /// Measure the average shell spawning time
     fn calibrate(&mut self) -> Result<()> {
         const COUNT: u64 = 50;
-        let progress_bar = if self.options.output_style != OutputStyleOption::Disabled {
+        let progress_bar = if self.options.output_style == OutputStyleOption::Disabled {
+            None
+        } else {
             Some(get_progress_bar(
                 COUNT,
                 "Measuring shell spawning time",
                 self.options.output_style,
             ))
-        } else {
-            None
         };
 
         let mut times_real: Vec<Second> = vec![];
@@ -296,6 +300,7 @@ pub struct MockExecutor {
 }
 
 impl MockExecutor {
+    #[must_use]
     pub fn new(shell: Option<String>) -> Self {
         MockExecutor { shell }
     }
