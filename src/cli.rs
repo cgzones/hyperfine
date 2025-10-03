@@ -1,9 +1,6 @@
 use std::ffi::OsString;
 
-use clap::{
-    builder::NonEmptyStringValueParser, crate_version, Arg, ArgAction, ArgMatches, Command,
-    ValueHint,
-};
+use clap::{Arg, ArgAction, ArgMatches, Command, ValueHint, builder::NonEmptyStringValueParser};
 
 pub fn get_cli_arguments<'a, I, T>(args: I) -> ArgMatches
 where
@@ -17,7 +14,7 @@ where
 /// Build the clap command for parsing command line arguments
 fn build_command() -> Command {
     Command::new("hyperfine")
-        .version(crate_version!())
+        .version(env!("CARGO_PKG_VERSION"))
         .next_line_help(true)
         .hide_possible_values(true)
         .about("A command-line benchmarking tool.")
